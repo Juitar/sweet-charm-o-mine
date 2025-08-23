@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GBG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "B": {
+      "item": "sweet_charm_o_mine:iron_pocket"
+    }
+  },
+  "result": {
+    "item": "sweet_charm_o_mine:gold_pocket"
+  }
+}

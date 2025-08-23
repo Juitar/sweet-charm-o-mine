@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IBI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "sweet_charm_o_mine:copper_pocket"
+    }
+  },
+  "result": {
+    "item": "sweet_charm_o_mine:iron_pocket"
+  }
+}

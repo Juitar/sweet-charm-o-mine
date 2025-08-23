@@ -161,6 +161,14 @@ dependencies {
     //Architectury API
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
 
+    // Mixin annotation processor
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+// Mixin configuration
+mixin {
+    add sourceSets.main, "sweet_charm_o_mine.refmap.json"
+    config "sweet_charm_o_mine.mixins.json"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

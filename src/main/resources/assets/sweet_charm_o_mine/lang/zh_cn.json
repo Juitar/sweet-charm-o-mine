@@ -1,5 +1,20 @@
 {
     "itemGroup.sweet_charm_o_mine": "Sweet Charm O' Mine",
-    "curios.identifier.bulletpocket":"子弹袋",
-    "curios.modifiers.bulletpocket":"装备子弹袋时"
+    "curios.identifier.bulletpocket":"子弹口袋",
+    "curios.modifiers.bulletpocket":"装备子弹袋时",
+    
+    "item.sweet_charm_o_mine.copper_pocket": "铜质子弹口袋",
+    "item.sweet_charm_o_mine.iron_pocket": "铁质子弹口袋",
+    "item.sweet_charm_o_mine.gold_pocket": "金质子弹口袋",
+    "item.sweet_charm_o_mine.diamond_pocket": "钻石子弹口袋",
+    "item.sweet_charm_o_mine.netherite_pocket": "下界合金子弹口袋",
+    
+    "tooltip.sweet_charm_o_mine.pocket.capacity": "容量: %d/%d",
+    "tooltip.sweet_charm_o_mine.pocket.contents": "内容物:",
+    "tooltip.sweet_charm_o_mine.pocket.shift": "按住 %s 查看内容",
+    "tooltip.sweet_charm_o_mine.shift": "Shift",
+    
+    "message.sweet_charm_o_mine.pocket.organized": "口袋已整理",
+
+    "container.sweet_charm_o_mine.pocket": "子弹口袋"
 }

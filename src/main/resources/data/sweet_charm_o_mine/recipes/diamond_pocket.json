@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "DBD",
+    "DDD"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "B": {
+      "item": "sweet_charm_o_mine:gold_pocket"
+    }
+  },
+  "result": {
+    "item": "sweet_charm_o_mine:diamond_pocket"
+  }
+}

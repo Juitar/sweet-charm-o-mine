@@ -1,6 +1,7 @@
 modLoader="javafml"
 loaderVersion="${loader_version_range}"
 license="${mod_license}"
+mixinConfigs=["sweet_charm_o_mine.mixins.json"]
 
 [[mods]]
 modId="${mod_id}"

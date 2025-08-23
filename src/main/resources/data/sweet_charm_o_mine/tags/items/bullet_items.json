@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:bullets",
+    "gunswithoutroses:bullet",
+    "gunswithoutroses:golden_bullet",
+    "gunswithoutroses:diamond_bullet",
+    "gunswithoutroses:netherite_bullet"
+  ]
+}

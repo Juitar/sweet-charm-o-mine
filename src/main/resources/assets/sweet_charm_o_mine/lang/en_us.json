@@ -1,5 +1,20 @@
 {
     "itemGroup.sweet_charm_o_mine": "Sweet Charm O' Mine",
     "curios.identifier.bulletpocket":"Bullet Pocket",
-    "curios.modifiers.bulletpocket":"When equipped Pocket"
+    "curios.modifiers.bulletpocket":"When equipped Pocket",
+    
+    "item.sweet_charm_o_mine.copper_pocket": "Copper Bullet Pocket",
+    "item.sweet_charm_o_mine.iron_pocket": "Iron Bullet Pocket",
+    "item.sweet_charm_o_mine.gold_pocket": "Golden Bullet Pocket",
+    "item.sweet_charm_o_mine.diamond_pocket": "Diamond Bullet Pocket",
+    "item.sweet_charm_o_mine.netherite_pocket": "Netherite Bullet Pocket",
+    
+    "tooltip.sweet_charm_o_mine.pocket.capacity": "Capacity: %d/%d",
+    "tooltip.sweet_charm_o_mine.pocket.contents": "Contents:",
+    "tooltip.sweet_charm_o_mine.pocket.shift": "Hold %s to view contents",
+    "tooltip.sweet_charm_o_mine.shift": "Shift",
+    
+    "message.sweet_charm_o_mine.pocket.organized": "Pocket organized",
+
+    "container.sweet_charm_o_mine.pocket": "Bullet Pocket"
 }
