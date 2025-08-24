@@ -61,8 +61,6 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         
-        // 添加调试日志
-        juitar.sweet_charm_o_mine.debug.PocketDebugHelper.debugPocketUse(player, stack);
         
         if (!level.isClientSide) {
             try {
@@ -116,10 +114,10 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
         
-        tooltip.add(Component.literal("§7容量: §f" + pocketType.getRows() + "x" + pocketType.getColumns() + " §7槽位"));
+        tooltip.add(Component.translatable("tooltip.sweet_charm_o_mine.pocket.size", pocketType.getRows(), pocketType.getColumns()).withStyle(style -> style.withColor(0x999999)));
         
         if (pocketType.getFireProof()) {
-            tooltip.add(Component.literal("§6防火"));
+            tooltip.add(Component.translatable("tooltip.sweet_charm_o_mine.pocket.fireproof").withStyle(style -> style.withColor(0xFFAA00)));
         }
         
         // 获取物品列表并计算统计信息
@@ -130,9 +128,7 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
         for (ItemStack slotStack : items) {
             totalItems += slotStack.getCount();
         }
-        
-        tooltip.add(Component.literal("§7已使用: §f" + usedSlots + "/" + getSlotCount() + " §7槽位"));
-        tooltip.add(Component.literal("§7物品数量: §f" + totalItems));
+        tooltip.add(Component.translatable("tooltip.sweet_charm_o_mine.pocket.ammo_count", totalItems).withStyle(style -> style.withColor(0x999999)));
     }
 
     @Nullable

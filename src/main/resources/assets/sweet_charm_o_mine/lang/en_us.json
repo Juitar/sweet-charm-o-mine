@@ -13,8 +13,14 @@
     "tooltip.sweet_charm_o_mine.pocket.contents": "Contents:",
     "tooltip.sweet_charm_o_mine.pocket.shift": "Hold %s to view contents",
     "tooltip.sweet_charm_o_mine.shift": "Shift",
+    "tooltip.sweet_charm_o_mine.pocket.size": "Capacity: %dx%d slots",
+    "tooltip.sweet_charm_o_mine.pocket.fireproof": "Fire Resistant",
+    "tooltip.sweet_charm_o_mine.pocket.ammo_count": "Ammo Count: %d",
     
     "message.sweet_charm_o_mine.pocket.organized": "Pocket organized",
 
-    "container.sweet_charm_o_mine.pocket": "Bullet Pocket"
+    "container.sweet_charm_o_mine.pocket": "Bullet Pocket",
+    
+    "key.sweet_charm_o_mine.toggle_sniper_zoom": "Toggle Sniper Zoom",
+    "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine"
 }

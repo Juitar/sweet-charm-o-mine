@@ -14,6 +14,9 @@ public class SweetCharm {
     public static final String MODID = "sweet_charm_o_mine";
     public static final Logger LOG = LogManager.getLogger();
     
+    // 狙击镜缩放状态
+    public static boolean sniperZoom = false;
+    
     public SweetCharm() {
         IEventBus EVENT_BUS = FMLJavaModLoadingContext.get().getModEventBus();
         

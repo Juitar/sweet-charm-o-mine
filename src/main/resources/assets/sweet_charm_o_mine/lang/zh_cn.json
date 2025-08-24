@@ -13,8 +13,14 @@
     "tooltip.sweet_charm_o_mine.pocket.contents": "内容物:",
     "tooltip.sweet_charm_o_mine.pocket.shift": "按住 %s 查看内容",
     "tooltip.sweet_charm_o_mine.shift": "Shift",
+    "tooltip.sweet_charm_o_mine.pocket.size": "容量: %dx%d 槽位",
+    "tooltip.sweet_charm_o_mine.pocket.fireproof": "防火",
+    "tooltip.sweet_charm_o_mine.pocket.ammo_count": "余弹数: %d",
     
     "message.sweet_charm_o_mine.pocket.organized": "口袋已整理",
 
-    "container.sweet_charm_o_mine.pocket": "子弹口袋"
+    "container.sweet_charm_o_mine.pocket": "子弹口袋",
+    
+    "key.sweet_charm_o_mine.toggle_sniper_zoom": "切换狙击镜缩放",
+    "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine"
 }

@@ -24,14 +24,14 @@ public class PocketContainer extends AbstractContainerMenu {
         int expectedSize = type.getRows() * type.getColumns();
         this.pocketInventory = new PocketInventory(pocketStack, expectedSize);
 
-        // 添加子弹口袋槽位
+        // 添加子弹口袋槽位 - 调整Y坐标偏移来匹配纹理
         int rows = type.getRows();
         int cols = type.getColumns();
         
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 this.addSlot(new Slot(pocketInventory, row * cols + col, 
-                    8 + col * 18, 18 + row * 18) {
+                    8 + col * 18, 20 + row * 18) { // 从18改为20，向下偏移2像素
                     @Override
                     public boolean mayPlace(ItemStack stack) {
                         return GunItem.BULLETS.test(stack) && !(stack.getItem() instanceof PocketItem);

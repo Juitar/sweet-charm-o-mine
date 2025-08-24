@@ -12,11 +12,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class PocketScreen extends AbstractContainerScreen<PocketContainer> {
-    private static final ResourceLocation TEXTURE = SweetCharm.resource("textures/gui/pocket.png");
+    // 不同材质的纹理文件
+    private static final ResourceLocation[] TEXTURES = {
+        SweetCharm.resource("textures/gui/copper_pocket.png"),    // 铜
+        SweetCharm.resource("textures/gui/iron_pocket.png"),           // 铁 
+        SweetCharm.resource("textures/gui/gold_pocket.png"),           // 金 
+        SweetCharm.resource("textures/gui/diamond_pocket.png"),           // 钻石 
+        SweetCharm.resource("textures/gui/netherite_pocket.png")            // 下界合金 
+    };
     
     // GUI元素的尺寸常量
     private static final int TOP_HEIGHT = 17;      // 顶部边框高度
-    private static final int BOTTOM_HEIGHT = 95;   // 底部边框高度(包含玩家物品栏)
+    private static final int BOTTOM_HEIGHT = 95;   // 底部边框高度
     private static final int SLOT_SIZE = 18;       // 槽位大小
     private static final int MATERIAL_ICON_SIZE = 20; // 材质图标大小
     
@@ -32,6 +39,7 @@ public class PocketScreen extends AbstractContainerScreen<PocketContainer> {
     private final PocketType pocketType;
     private final int rows;
     private final int cols;
+    private final ResourceLocation currentTexture;
     
     public PocketScreen(PocketContainer container, Inventory playerInventory, Component title) {
         super(container, playerInventory, title);
@@ -40,6 +48,10 @@ public class PocketScreen extends AbstractContainerScreen<PocketContainer> {
         this.pocketType = container.getPocketType();
         this.rows = pocketType.getRows();
         this.cols = pocketType.getColumns();
+        
+        // 选择对应的纹理文件
+        int textureIndex = Math.min(pocketType.ordinal(), TEXTURES.length - 1);
+        this.currentTexture = TEXTURES[textureIndex];
         
         // 计算GUI尺寸
         this.imageWidth = 176;
@@ -56,36 +68,9 @@ public class PocketScreen extends AbstractContainerScreen<PocketContainer> {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
         
-        // 1. 绘制顶部边框
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, TOP_HEIGHT);
-        
-        // 2. 绘制中间部分(根据行数拉伸)
-        int middleHeight = rows * SLOT_SIZE;
-        for (int row = 0; row < rows; row++) {
-            guiGraphics.blit(TEXTURE, x, y + TOP_HEIGHT + (row * SLOT_SIZE), 
-                    0, 17, this.imageWidth, SLOT_SIZE);
-        }
-        
-        // 3. 绘制底部边框(包含玩家物品栏)
-        guiGraphics.blit(TEXTURE, x, y + TOP_HEIGHT + middleHeight, 
-                0, 71, this.imageWidth, BOTTOM_HEIGHT);
-        
-        // 4. 绘制材质类型图标
-        int materialIconX = x + this.imageWidth - MATERIAL_ICON_SIZE - 7;
-        int materialIconY = y + 6;
-        int materialIndex = Math.min(pocketType.ordinal(), MATERIAL_ICON_UV.length - 1);
-        guiGraphics.blit(TEXTURE, materialIconX, materialIconY, 
-                MATERIAL_ICON_UV[materialIndex][0], MATERIAL_ICON_UV[materialIndex][1], 
-                MATERIAL_ICON_SIZE, MATERIAL_ICON_SIZE);
-        
-        // 5. 绘制所有物品槽
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                int slotX = x + 7 + col * SLOT_SIZE;
-                int slotY = y + TOP_HEIGHT + row * SLOT_SIZE;
-                guiGraphics.blit(TEXTURE, slotX, slotY, 176, 0, SLOT_SIZE, SLOT_SIZE);
-            }
-        }
+        // 简化渲染 - 直接绘制完整的GUI背景
+        // 不分割纹理，直接使用完整的GUI区域
+        guiGraphics.blit(currentTexture, x, y, 0, 0, this.imageWidth, this.imageHeight);
     }
 
     @Override
@@ -113,9 +98,5 @@ public class PocketScreen extends AbstractContainerScreen<PocketContainer> {
         // 绘制背包标签
         guiGraphics.drawString(this.font, this.playerInventoryTitle, 8, this.inventoryLabelY, 4210752, false);
         
-        // 绘制容量信息
-        String capacityText = rows + "x" + cols;
-        int capacityWidth = this.font.width(capacityText);
-        guiGraphics.drawString(this.font, capacityText, this.imageWidth - capacityWidth - 30, 6, 4210752, false);
     }
 }
