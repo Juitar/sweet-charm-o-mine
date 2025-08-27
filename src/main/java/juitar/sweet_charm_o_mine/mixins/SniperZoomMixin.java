@@ -1,6 +1,7 @@
 package juitar.sweet_charm_o_mine.mixins;
 
 import juitar.sweet_charm_o_mine.SweetCharm;
+import juitar.sweet_charm_o_mine.items.wearable.SniperScopeItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.registries.Registries;
@@ -10,6 +11,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import top.theillusivec4.curios.api.CuriosApi;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -31,8 +33,11 @@ public class SniperZoomMixin {
         Minecraft mc = Minecraft.getInstance();
         
         
-        // 检查手持物品是否带有狙击枪标签且处于第一人称视角
-        if (stack.is(SNIPER_TAG) && mc.options.getCameraType().isFirstPerson()) {
+        // 检查玩家是否装备了狙击镜饰品
+        boolean hasSniperScope = CuriosApi.getCuriosHelper().findFirstCurio(player, item -> item.getItem() instanceof SniperScopeItem).isPresent();
+        
+        // 检查手持物品是否带有狙击枪标签、处于第一人称视角，且玩家装备了狙击镜
+        if (stack.is(SNIPER_TAG) && mc.options.getCameraType().isFirstPerson() && hasSniperScope) {
             boolean sneaking = player.isCrouching();
             
             

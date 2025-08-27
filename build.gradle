@@ -142,7 +142,7 @@ dependencies {
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     //gwr
     implementation fg.deobf("curse.maven:guns-without-roses-405077:6843150")
-    //target dummy
+    // dummy
     implementation fg.deobf("curse.maven:selene-499980:6249659")
     implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:6237015")
     //jei
@@ -155,14 +155,14 @@ dependencies {
     implementation fg.deobf("curse.maven:configured-457570:5180900")
     //rubidium
     implementation fg.deobf("curse.maven:rubidium-574856:4952685")
-
+    //terra curio
+    implementation fg.deobf("curse.maven:terra-curio-1027625:6566491")
     //Cloth Config
     implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
     //Architectury API
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
-
-    // Mixin annotation processor
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    //L2 Library
+    implementation fg.deobf("curse.maven:l2library-620203:6806000")
 }
 
 // Mixin configuration

@@ -1,14 +1,26 @@
 {
     "itemGroup.sweet_charm_o_mine": "Sweet Charm O' Mine",
     "curios.identifier.bulletpocket":"Bullet Pocket",
+    "curios.identifier.gear":"Gear",
     "curios.modifiers.bulletpocket":"When equipped Pocket",
+    "curios.modifiers.gear":"When quipped gear",
     
     "item.sweet_charm_o_mine.copper_pocket": "Copper Bullet Pocket",
     "item.sweet_charm_o_mine.iron_pocket": "Iron Bullet Pocket",
     "item.sweet_charm_o_mine.gold_pocket": "Golden Bullet Pocket",
     "item.sweet_charm_o_mine.diamond_pocket": "Diamond Bullet Pocket",
     "item.sweet_charm_o_mine.netherite_pocket": "Netherite Bullet Pocket",
+    "item.sweet_charm_o_mine.sniper_scope":"Sniper Scope",
+    "item.sweet_charm_o_mine.dunlop_pick": "Dunlop Pick",
+    "item.sweet_charm_o_mine.bullet_shell_charm": "Bullet Shell Charm",
+    "item.sweet_charm_o_mine.gunpowder_bag": "Gunpowder Bag",
+    "item.sweet_charm_o_mine.magzine": "Magzine",
+    "item.sweet_charm_o_mine.tabacco_pipe": "Tabacco Pipe",
     
+    "tooltip.sweet_charm_o_mine.sniper_scope.desc":"When holding a sniper,sneaking can use scope to aime",
+    "tooltip.sweet_charm_o_mine.dunlop_pick.desc":"Standing still grants a 25% chance for shots to consume no ammo",
+    "tooltip.sweet_charm_o_mine.bullet_shell_charm.desc":"",
+
     "tooltip.sweet_charm_o_mine.pocket.capacity": "Capacity: %d/%d",
     "tooltip.sweet_charm_o_mine.pocket.contents": "Contents:",
     "tooltip.sweet_charm_o_mine.pocket.shift": "Hold %s to view contents",

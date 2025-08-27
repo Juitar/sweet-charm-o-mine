@@ -3,7 +3,7 @@ package juitar.sweet_charm_o_mine.items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
-
+import lykrast.gunswithoutroses.item.GunItem;
 /**
  * 自定义槽位，防止子弹袋被放入自己内部
  */
@@ -28,10 +28,9 @@ public class PocketSlot extends SlotItemHandler {
         }
         
         // 只允许放入子弹物品
-        if (!lykrast.gunswithoutroses.item.GunItem.BULLETS.test(stack)) {
+        if (!GunItem.BULLETS.test(stack)) {
             return false;
-        }
-        
+        }       
         return super.mayPlace(stack);
     }
 }

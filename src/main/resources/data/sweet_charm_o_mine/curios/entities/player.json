@@ -1,6 +1,7 @@
 {
   "entities": ["minecraft:player"],
   "slots": [
-    "bulletpocket"
+    "bulletpocket",
+    "gear"
   ]
 }

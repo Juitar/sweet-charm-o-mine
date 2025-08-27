@@ -1,5 +1,6 @@
 package juitar.sweet_charm_o_mine;
 
+import juitar.sweet_charm_o_mine.registry.SweetCharmAttributes;
 import juitar.sweet_charm_o_mine.registry.SweetCharmItems;
 import juitar.sweet_charm_o_mine.registry.SweetCharmContainers;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +24,9 @@ public class SweetCharm {
         // 注册物品和容器
         SweetCharmItems.REG.register(EVENT_BUS);
         SweetCharmContainers.register(EVENT_BUS);
+        SweetCharmAttributes.REG.register(EVENT_BUS);
         EVENT_BUS.addListener(SweetCharmItems::makeCreativeTab);
+        EVENT_BUS.addListener(SweetCharmAttributes::playerAttributes);
 
     }
     

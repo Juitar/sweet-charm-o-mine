@@ -1,14 +1,29 @@
 {
     "itemGroup.sweet_charm_o_mine": "Sweet Charm O' Mine",
     "curios.identifier.bulletpocket":"子弹口袋",
+    "curios.identifier.gear":"零件",
     "curios.modifiers.bulletpocket":"装备子弹袋时",
-    
+    "curios.modifiers.gear":"装备零件时",
+
     "item.sweet_charm_o_mine.copper_pocket": "铜质子弹口袋",
     "item.sweet_charm_o_mine.iron_pocket": "铁质子弹口袋",
     "item.sweet_charm_o_mine.gold_pocket": "金质子弹口袋",
     "item.sweet_charm_o_mine.diamond_pocket": "钻石子弹口袋",
     "item.sweet_charm_o_mine.netherite_pocket": "下界合金子弹口袋",
-    
+    "item.sweet_charm_o_mine.sniper_scope":"狙击镜",
+    "item.sweet_charm_o_mine.dunlop_pick": "邓禄普拨片",
+    "item.sweet_charm_o_mine.bullet_shell_charm": "子弹壳护符",
+        "item.sweet_charm_o_mine.gunpowder_bag": "火药袋",
+    "item.sweet_charm_o_mine.magzine": "弹匣",
+    "item.sweet_charm_o_mine.tabacco_pipe": "烟管",
+
+    "tooltip.sweet_charm_o_mine.sniper_scope.desc":"潜行时允许狙击枪使用狙击镜瞄准",
+    "tooltip.sweet_charm_o_mine.dunlop_pick.desc":"站立不动时增加25%不消耗子弹概率",
+    "tooltip.sweet_charm_o_mine.bullet_shell.base":"基础穿甲: %d%%",
+    "tooltip.sweet_charm_o_mine.bullet_shell.enhanced":"强化穿甲: %d%% (激活中!)",
+    "tooltip.sweet_charm_o_mine.bullet_shell.progress":"连击进度: %d/%d",
+    "tooltip.sweet_charm_o_mine.bullet_shell_charm.desc":"每击中5次目标后强化下一次射击",
+
     "tooltip.sweet_charm_o_mine.pocket.capacity": "容量: %d/%d",
     "tooltip.sweet_charm_o_mine.pocket.contents": "内容物:",
     "tooltip.sweet_charm_o_mine.pocket.shift": "按住 %s 查看内容",
@@ -22,5 +37,8 @@
     "container.sweet_charm_o_mine.pocket": "子弹口袋",
     
     "key.sweet_charm_o_mine.toggle_sniper_zoom": "切换狙击镜缩放",
-    "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine"
+    "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine",
+    
+    "attribute.sweet_charm_o_mine.bullet_armor_penetration": "子弹穿甲",
+    "attribute.sweet_charm_o_mine.bullet_armor_penetration.desc": "使用枪械时忽略目标部分护甲值"
 }

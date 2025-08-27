@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "sweet_charm_o_mine:item/sniper_scope"
+  }
+}
