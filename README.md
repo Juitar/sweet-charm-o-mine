@@ -1,82 +1,67 @@
 # Sweet Charm O' Mine
 
-一个为Minecraft 1.20.1设计的Forge模组，专为配合Guns Without Roses模组使用，提供子弹口袋系统和狙击镜功能。
+A tactical accessories mod for Minecraft 1.20.1 Forge, designed to enhance Guns Without Roses with advanced weapon attachments and utilities.
 
-## 功能特性
+## 🎯 Key Features
 
-### 🎒 子弹口袋系统
-- **多种材质等级**：铜质、铁质、金质、钻石、下界合金子弹口袋
-- **不同容量**：从2x3到4x6的存储空间
-- **防火属性**：高级材质口袋具有防火功能
-- **自动供弹**：与Guns Without Roses枪械完美集成，自动为枪械提供弹药
-- **Curios集成**：可作为饰品装备在专用槽位
-- **智能管理**：支持GUI界面管理弹药，显示余弹数量
+### 🔫 Advanced Sniper Scope System
+- **Three Zoom Modes**: Press Z to cycle through 4x Zoom → 8x Zoom → Off
+- **Smart Detection**: Automatically detects sniper rifles and requires equipped sniper scope charm
+- **Immersive Experience**: Activate zoom by sneaking, with audio feedback
+- **Full Localization**: Supports both Chinese and English interfaces
 
-### 🔍 狙击镜功能
-- **潜行缩放**：手持带有狙击镜标签的武器时，潜行可触发缩放效果
-- **音效反馈**：缩放开启/关闭时播放望远镜音效
-- **第一人称专用**：仅在第一人称视角下生效
+### 🎒 Bullet Pocket System
+Different materials provide varying storage capacities:
 
-## 子弹口袋规格
+| Material | Capacity | Fireproof | Crafting Material |
+|----------|----------|-----------|-------------------|
+| Copper | 1x9 (9 slots) | ❌ | Copper Ingot |
+| Iron | 2x9 (18 slots) | ❌ | Iron Ingot |
+| Gold | 3x9 (27 slots) | ❌ | Gold Ingot |
+| Diamond | 4x9 (36 slots) | ❌ | Diamond |
+| Netherite | 5x9 (45 slots) | ✅ | Netherite Ingot |
 
-| 材质 | 容量 | 防火 | 合成材料 |
-|------|------|------|----------|
-| 铜质 | 1x9 (9槽) | ❌ | 铜锭  |
-| 铁质 | 2x9 (18槽) | ❌ | 铁锭  |
-| 金质 | 3x9 (27槽) | ❌ | 金锭  |
-| 钻石 | 4x9 (36槽) | ❌ | 钻石  |
-| 下界合金 | 5x9 (45槽) | ✅ | 下界合金锭 |
+### 🏆 Tactical Accessories
+- **Dunlop Pick**: 25% chance to not consume ammo when standing still
+- **Bullet Shell Charm**: Enhances next shot's armor penetration after 5 consecutive hits
+- **Gunpowder Bag**: 20% chance to create explosion on target hit
+- **Magazine**: Consecutive shots grant fire rate boost and ammo conservation
+- **Shotgun Shells**: Standing still for 3 seconds grants accuracy boost
+- **Tobacco Pipe**: Standing still for 2 seconds grants invisibility and accuracy boost
 
-## 依赖模组
+## 🔧 Technical Features
 
-- **Minecraft Forge** 1.20.1
-- **Guns Without Roses** - 提供枪械和弹药系统
-- **Curios API** - 提供饰品槽位功能
+- **Client-Side Optimization**: Sniper scope state managed entirely on client-side
+- **Mixin Integration**: Deep game mechanics integration for smooth experience
+- **Curios Compatibility**: Perfect integration with Curios API charm system
+- **Modular Design**: Clean code structure for easy maintenance and expansion
 
-## 安装方法
+## 📋 Requirements
 
-1. 确保已安装Minecraft Forge 1.20.1
-2. 下载并安装依赖模组：Guns Without Roses 和 Curios API
-3. 将Sweet Charm O' Mine模组文件放入mods文件夹
-4. 启动游戏
+- **Minecraft**: 1.20.1
+- **Forge**: 47.3.0+
+- **Curios API**: 5.14.0+
+- **CGM/Guns Without Roses**: 2.4.0
 
-## 使用方法
+## 🎮 How to Use
 
-### 子弹口袋
-1. 合成所需等级的子弹口袋
-2. 在Curios界面将口袋装备到"子弹口袋"槽位
-3. 右键点击口袋打开GUI界面
-4. 将子弹放入口袋中
-5. 使用枪械时会自动从口袋中消耗弹药
+1. Equip a sniper scope charm in your Curios slot
+2. Hold a sniper rifle (tagged with `gunswithoutroses:gun/sniper`)
+3. Press Z to cycle zoom modes: Off → 4x → 8x → Off
+4. Sneak to activate the current zoom setting
 
-### 狙击镜
-1. 手持带有`gunswithoutroses:gun/sniper`标签的武器
-2. 在第一人称视角下按住潜行键
-3. 享受缩放效果和音效反馈
+## 🌍 Localization Support
 
-## 技术特性
+- 🇨🇳 Simplified Chinese (zh_cn)
+- 🇺🇸 English (en_us)
 
-- **国际化支持**：完整的中英文本地化
-- **NBT数据存储**：安全的物品数据保存
-- **Mixin集成**：无缝的游戏机制扩展
-- **事件驱动**：高效的弹药消耗处理
-- **GUI系统**：直观的用户界面
+## 📦 Installation
 
-## 开发信息
-
-- **模组ID**：`sweet_charm_o_mine`
-- **版本**：基于项目配置
-- **开发者**：Juitar
-- **许可证**：见LICENSE.txt
-
-## 兼容性
-
-本模组专为与Guns Without Roses模组配合使用而设计，确保最佳游戏体验请使用推荐的模组版本组合。
-
-## 反馈与支持
-
-如遇到问题或有改进建议，请通过项目仓库提交Issue。
+1. Ensure Minecraft 1.20.1 Forge is installed
+2. Download and install Curios API
+3. Place this mod in your mods folder
+4. Launch the game and enjoy enhanced firearms experience!
 
 ---
 
-*让你的弹药管理更加便捷，让狙击体验更加真实！*
+*Professional weapon accessories mod for firearm enthusiasts - Sweet Charm O' Mine*
