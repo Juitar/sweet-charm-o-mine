@@ -44,6 +44,10 @@
     "key.sweet_charm_o_mine.toggle_sniper_zoom": "Toggle Sniper Zoom",
     "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine",
     
+    "message.sweet_charm_o_mine.sniper_zoom_4x": "Sniper Scope: 4x Zoom",
+    "message.sweet_charm_o_mine.sniper_zoom_8x": "Sniper Scope: 8x Zoom",
+    "message.sweet_charm_o_mine.sniper_zoom_off": "Sniper Scope: Off",
+    
     "attribute.sweet_charm_o_mine.bullet_armor_penetration": "Bullet Armor Penetration",
     "attribute.sweet_charm_o_mine.bullet_armor_penetration.desc": "Ignores a portion of target's armor when using firearms"
 }

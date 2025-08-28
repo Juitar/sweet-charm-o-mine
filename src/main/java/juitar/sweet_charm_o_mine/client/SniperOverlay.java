@@ -18,7 +18,7 @@ public class SniperOverlay {
     
     @SubscribeEvent
     public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Post event) {
-        if (!SweetCharm.sniperZoom) return;
+        if (!ClientData.isCurrentlyZooming()) return;
         
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || !mc.options.getCameraType().isFirstPerson()) return;

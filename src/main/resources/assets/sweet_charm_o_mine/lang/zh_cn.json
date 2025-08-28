@@ -46,6 +46,10 @@
     "key.sweet_charm_o_mine.toggle_sniper_zoom": "切换狙击镜缩放",
     "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine",
     
+    "message.sweet_charm_o_mine.sniper_zoom_4x": "狙击镜: 4倍缩放",
+    "message.sweet_charm_o_mine.sniper_zoom_8x": "狙击镜: 8倍缩放", 
+    "message.sweet_charm_o_mine.sniper_zoom_off": "狙击镜: 关闭",
+    
     "attribute.sweet_charm_o_mine.bullet_armor_penetration": "子弹穿甲",
     "attribute.sweet_charm_o_mine.bullet_armor_penetration.desc": "使用枪械时忽略目标部分护甲值"
 }
