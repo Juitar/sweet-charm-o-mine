@@ -15,7 +15,7 @@ public class GunpowderItem extends CurioItem {
         addAttributeModifier(GWRAttributes.dmgBase.get(),
         DMG,
         "gunpowder_dmg_bonus", 
-        3,
+        2,
         AttributeModifier.Operation.ADDITION);
 
                 addAttributeModifier(GWRAttributes.fireDelay.get(),
@@ -23,9 +23,6 @@ public class GunpowderItem extends CurioItem {
         "gunpowder_firedown", 
         0.3,
         AttributeModifier.Operation.MULTIPLY_BASE);
-
-
     }
-    
 
 }

@@ -3,7 +3,7 @@
     "curios.identifier.bulletpocket":"Bullet Pocket",
     "curios.identifier.gear":"Gear",
     "curios.modifiers.bulletpocket":"When equipped Pocket",
-    "curios.modifiers.gear":"When quipped gear",
+    "curios.modifiers.gear":"When equipped gear",
     
     "item.sweet_charm_o_mine.copper_pocket": "Copper Bullet Pocket",
     "item.sweet_charm_o_mine.iron_pocket": "Iron Bullet Pocket",
@@ -14,12 +14,20 @@
     "item.sweet_charm_o_mine.dunlop_pick": "Dunlop Pick",
     "item.sweet_charm_o_mine.bullet_shell_charm": "Bullet Shell Charm",
     "item.sweet_charm_o_mine.gunpowder_bag": "Gunpowder Bag",
-    "item.sweet_charm_o_mine.magzine": "Magzine",
-    "item.sweet_charm_o_mine.tabacco_pipe": "Tabacco Pipe",
+    "item.sweet_charm_o_mine.magazine": "Magazine",
+    "item.sweet_charm_o_mine.shotgun_shells": "Shotgun Shells",
+    "item.sweet_charm_o_mine.tobacco_pipe": "Tobacco Pipe",
     
-    "tooltip.sweet_charm_o_mine.sniper_scope.desc":"When holding a sniper,sneaking can use scope to aime",
+    "tooltip.sweet_charm_o_mine.sniper_scope.desc":"When sneaking, allows sniper rifles to use scope for aiming",
     "tooltip.sweet_charm_o_mine.dunlop_pick.desc":"Standing still grants a 25% chance for shots to consume no ammo",
-    "tooltip.sweet_charm_o_mine.bullet_shell_charm.desc":"",
+    "tooltip.sweet_charm_o_mine.bullet_shell.base":"Base Penetration: %d%%",
+    "tooltip.sweet_charm_o_mine.bullet_shell.enhanced":"Enhanced Penetration: %d%% (Active!)",
+    "tooltip.sweet_charm_o_mine.bullet_shell.progress":"Combo Progress: %d/%d",
+    "tooltip.sweet_charm_o_mine.bullet_shell_charm.desc":"Enhances next shot after hitting targets 5 times",
+    "tooltip.sweet_charm_o_mine.gunpowder_bag.desc":"20% chance to create explosion when hitting targets",
+    "tooltip.sweet_charm_o_mine.magazine.desc":"Consecutive shots grant fire rate boost at 10 hits and ammo refill at 20 hits",
+    "tooltip.sweet_charm_o_mine.shotgun_shells.desc":"Standing still for 3 seconds grants 10 seconds of accuracy boost",
+    "tooltip.sweet_charm_o_mine.tobacco_pipe.desc":"Standing still for 2 seconds grants invisibility and accuracy boost",
 
     "tooltip.sweet_charm_o_mine.pocket.capacity": "Capacity: %d/%d",
     "tooltip.sweet_charm_o_mine.pocket.contents": "Contents:",
@@ -34,5 +42,8 @@
     "container.sweet_charm_o_mine.pocket": "Bullet Pocket",
     
     "key.sweet_charm_o_mine.toggle_sniper_zoom": "Toggle Sniper Zoom",
-    "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine"
+    "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine",
+    
+    "attribute.sweet_charm_o_mine.bullet_armor_penetration": "Bullet Armor Penetration",
+    "attribute.sweet_charm_o_mine.bullet_armor_penetration.desc": "Ignores a portion of target's armor when using firearms"
 }

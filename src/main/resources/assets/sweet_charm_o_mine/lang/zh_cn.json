@@ -13,9 +13,11 @@
     "item.sweet_charm_o_mine.sniper_scope":"狙击镜",
     "item.sweet_charm_o_mine.dunlop_pick": "邓禄普拨片",
     "item.sweet_charm_o_mine.bullet_shell_charm": "子弹壳护符",
-        "item.sweet_charm_o_mine.gunpowder_bag": "火药袋",
-    "item.sweet_charm_o_mine.magzine": "弹匣",
-    "item.sweet_charm_o_mine.tabacco_pipe": "烟管",
+    "item.sweet_charm_o_mine.gunpowder_bag": "火药袋",
+    "item.sweet_charm_o_mine.magazine": "弹匣",
+    "item.sweet_charm_o_mine.shotgun_shells": "霰弹枪弹壳",
+    "item.sweet_charm_o_mine.tobacco_pipe": "烟管",
+    
 
     "tooltip.sweet_charm_o_mine.sniper_scope.desc":"潜行时允许狙击枪使用狙击镜瞄准",
     "tooltip.sweet_charm_o_mine.dunlop_pick.desc":"站立不动时增加25%不消耗子弹概率",
@@ -23,6 +25,11 @@
     "tooltip.sweet_charm_o_mine.bullet_shell.enhanced":"强化穿甲: %d%% (激活中!)",
     "tooltip.sweet_charm_o_mine.bullet_shell.progress":"连击进度: %d/%d",
     "tooltip.sweet_charm_o_mine.bullet_shell_charm.desc":"每击中5次目标后强化下一次射击",
+    "tooltip.sweet_charm_o_mine.gunpowder_bag.desc":"击中目标有20%概率产生爆炸",
+    "tooltip.sweet_charm_o_mine.magazine.desc":"连续射击10发获得射速提升，20发获得弹药节约",
+    "tooltip.sweet_charm_o_mine.shotgun_shells.desc":"站立不动3秒获得10秒枪械精准度提升",
+    "tooltip.sweet_charm_o_mine.tobacco_pipe.desc":"站立不动2秒获得隐身及枪械精准度提升",
+
 
     "tooltip.sweet_charm_o_mine.pocket.capacity": "容量: %d/%d",
     "tooltip.sweet_charm_o_mine.pocket.contents": "内容物:",

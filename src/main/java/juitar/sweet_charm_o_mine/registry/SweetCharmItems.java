@@ -6,8 +6,11 @@ import juitar.sweet_charm_o_mine.items.PocketItem;
 import juitar.sweet_charm_o_mine.items.PocketType;
 import juitar.sweet_charm_o_mine.items.wearable.BulletShellCharmItem;
 import juitar.sweet_charm_o_mine.items.wearable.GunpowderItem;
+import juitar.sweet_charm_o_mine.items.wearable.ShellItem;
 import juitar.sweet_charm_o_mine.items.wearable.PickItem;
 import juitar.sweet_charm_o_mine.items.wearable.SniperScopeItem;
+import juitar.sweet_charm_o_mine.items.wearable.PipeItem;
+import juitar.sweet_charm_o_mine.items.wearable.MagazineItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -38,8 +41,9 @@ public class SweetCharmItems {
     public static final RegistryObject<CurioItem> SNIPER_SCOPE = initItem(() -> new SniperScopeItem(defP().stacksTo(1)), "sniper_scope");
     public static final RegistryObject<CurioItem> DUNLOP_PICK = initItem(() -> new PickItem(defP().stacksTo(1)), "dunlop_pick");
     public static final RegistryObject<CurioItem> GUNPOWDER_BAG = initItem(() -> new GunpowderItem(defP().stacksTo(1)), "gunpowder_bag");
-    public static final RegistryObject<CurioItem> MAGAZINE = initItem(() -> new CurioItem(defP().stacksTo(1)), "magazine");
-    public static final RegistryObject<CurioItem> TABACCO_PIPE = initItem(() -> new CurioItem(defP().stacksTo(1)), "tobacco_pipe");
+    public static final RegistryObject<CurioItem> SHELL = initItem(() -> new ShellItem(defP().stacksTo(1)), "shotgun_shells");
+    public static final RegistryObject<CurioItem> MAGAZINE = initItem(() -> new MagazineItem(defP().stacksTo(1)), "magazine");
+    public static final RegistryObject<CurioItem> TABACCO_PIPE = initItem(() -> new PipeItem(defP().stacksTo(1)), "tobacco_pipe");
     public static final RegistryObject<CurioItem> BULLET_SHELL_CHARM = initItem(() -> new BulletShellCharmItem(defP().stacksTo(1), 0.10), "bullet_shell_charm");
     
     public static Item.Properties defP() {
