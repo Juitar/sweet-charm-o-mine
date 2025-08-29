@@ -11,15 +11,13 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.CuriosApi;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@OnlyIn(Dist.CLIENT)
+
 @Mixin(LocalPlayer.class)
 public class SniperZoomMixin {
     
@@ -27,7 +25,7 @@ public class SniperZoomMixin {
     private static final TagKey<Item> SNIPER_TAG = TagKey.create(Registries.ITEM, 
         new ResourceLocation("gunswithoutroses", "gun/sniper"));
     
-    @Inject(method = "isShiftKeyDown", at = @At("HEAD"))
+    @Inject(method = "isCrouching", at = @At("RETURN"))
     private void checkSneakZoom(CallbackInfoReturnable<Boolean> cir) {
         Player player = (Player) (Object) this;
         if (!player.level().isClientSide()) return;
@@ -39,9 +37,9 @@ public class SniperZoomMixin {
         boolean hasSniperScope = CuriosApi.getCuriosHelper().findFirstCurio(player, item -> item.getItem() instanceof SniperScopeItem).isPresent();
         
         // 检查手持物品是否带有狙击枪标签、处于第一人称视角，且玩家装备了狙击镜
-        // 检查手持物品是否带有狙击枪标签、处于第一人称视角，且玩家装备了狙击镜
         if (stack.is(SNIPER_TAG) && mc.options.getCameraType().isFirstPerson() && hasSniperScope && ClientData.getCurrentZoomMode() != ClientData.ZoomMode.OFF) {
-            boolean sneaking = player.isCrouching();
+            // 使用 cir.getReturnValue() 获取原始的 isCrouching 返回值，避免递归调用
+            boolean sneaking = cir.getReturnValue();
             boolean currentZoomState = ClientData.isCurrentlyZooming();
             
             if (sneaking && sneaking != currentZoomState) {

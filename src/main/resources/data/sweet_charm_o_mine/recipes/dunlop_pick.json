@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "CIC",
+    "NC "
+  ],
+  "key": {
+    "N": { "item": "minecraft:netherite_scrap" },
+    "I": { "item": "minecraft:iron_ingot" },
+    "C": { "item": "minecraft:coal" }
+  },
+  "result": {
+    "item": "sweet_charm_o_mine:dunlop_pick"
+  }
+}

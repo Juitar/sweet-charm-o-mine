@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
-    id 'org.spongepowered.mixin' version '0.7.+'
+    id 'org.spongepowered.mixin' version '0.7.38'
 }
 
 version = mod_version
@@ -163,12 +163,20 @@ dependencies {
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
     //L2 Library
     implementation fg.deobf("curse.maven:l2library-620203:6806000")
+
+
+
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
 }
 
 // Mixin configuration
 mixin {
-    add sourceSets.main, "sweet_charm_o_mine.refmap.json"
+    add sourceSets.main, "sweet_charm_o_mine.mixins.refmap.json"
     config "sweet_charm_o_mine.mixins.json"
+    
+    debug.verbose = true
+    debug.export = true
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

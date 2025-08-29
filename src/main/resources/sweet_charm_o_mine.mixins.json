@@ -3,9 +3,9 @@
   "minVersion": "0.8",
   "package": "juitar.sweet_charm_o_mine.mixins",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "sweet_charm_o_mine.refmap.json",
+  "refmap": "sweet_charm_o_mine.mixins.refmap.json",
   "mixins": [
-    "PlayerMixin"
+    "GunItemMixin"
   ],
   "client": [
     "SniperZoomMixin",

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " SS",
+    " S ",
+    "CB "
+  ],
+  "key": {
+    "C": { "item": "minecraft:coal" },
+    "S": { "item": "minecraft:stick" },
+    "B":{ "item": "gunswithoutroses:blaze_bullet"}
+    },
+  "result": {
+    "item": "sweet_charm_o_mine:tobacco_pipe"
+  }
+}

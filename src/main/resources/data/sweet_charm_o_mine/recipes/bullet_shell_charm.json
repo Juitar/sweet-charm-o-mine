@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LL ",
+    "LO ",
+    "N  "
+  ],
+  "key": {
+    "O": { "item": "minecraft:gold_ingot" },
+    "L": { "item": "minecraft:leather" },
+    "N": { "item": "minecraft:netherite_scrap" }
+  },
+  "result": {
+    "item": "sweet_charm_o_mine:bullet_shell_charm"
+  }
+}

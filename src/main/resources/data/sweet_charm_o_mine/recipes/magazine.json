@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IBI",
+    "IBI",
+    "III"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "B":{"item" :"gunswithoutroses:iron_bullet"}
+  },
+  "result": {
+    "item": "sweet_charm_o_mine:magazine"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "GGG",
+    "III"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "G": { "item": "minecraft:gunpowder" },
+    "B":{"item" :"gunswithoutroses:iron_bullet"}
+  },
+  "result": {
+    "item": "sweet_charm_o_mine:shotgun_shells"
+  }
+}
