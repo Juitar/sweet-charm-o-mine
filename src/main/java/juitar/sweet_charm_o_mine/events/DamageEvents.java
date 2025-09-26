@@ -49,8 +49,11 @@ public class DamageEvents {
                     createCustomExplosion(attacker, victimEntity, 4.0f, event.getAmount()*0.8f);
                 }
                 
-                // 弹匣连击系统：每次射击时触发
-                MagazineItem.onPlayerShoot(attacker);
+                // 弹匣连击系统：只有佩戴弹匣时才触发
+                boolean hasMagazine = CuriosApi.getCuriosHelper().findFirstCurio(attacker, item -> item.getItem() instanceof MagazineItem).isPresent();
+                if (hasMagazine) {
+                    MagazineItem.onPlayerShoot(attacker);
+                }
                 
                 
                 

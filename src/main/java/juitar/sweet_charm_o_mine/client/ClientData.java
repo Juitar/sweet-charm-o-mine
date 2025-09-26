@@ -60,6 +60,8 @@ public class ClientData {
      */
     public static ZoomMode toggleZoomMode() {
         currentZoomMode = currentZoomMode.next();
+        // 保存配置
+        ClientConfig.save();
         return currentZoomMode;
     }
     
@@ -69,6 +71,14 @@ public class ClientData {
      */
     public static ZoomMode getCurrentZoomMode() {
         return currentZoomMode;
+    }
+    
+    /**
+     * 设置缩放模式（用于配置加载）
+     * @param mode 缩放模式
+     */
+    public static void setZoomMode(ZoomMode mode) {
+        currentZoomMode = mode;
     }
     
     /**

@@ -5,6 +5,7 @@ import juitar.sweet_charm_o_mine.client.gui.PocketScreen;
 import juitar.sweet_charm_o_mine.registry.SweetCharmContainers;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -17,6 +18,15 @@ public class ClientSetup {
         event.enqueueWork(() -> {
             // 注册通用容器的屏幕
             MenuScreens.register(SweetCharmContainers.POCKET_CONTAINER.get(), PocketScreen::new);
+            
+            // 加载客户端配置
+            ClientConfig.load();
         });
+    }
+    
+    @SubscribeEvent
+    public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
+        // 注册按键绑定到游戏设置中
+        event.register(KeyBindings.TOGGLE_SNIPER_ZOOM);
     }
 }
