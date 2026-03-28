@@ -164,7 +164,13 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
 
     @Override
     public BulletEntity createProjectile(Level world, ItemStack stack, LivingEntity shooter) {
-        // 子弹口袋本身不创建弹丸，而是委托给实际的子弹
+        // 委托给口袋内的真实子弹，保留其弹药转化逻辑（如铁弹丸→火焰弹丸）
+        java.util.List<ItemStack> items = getInventoryItems(stack);
+        for (ItemStack bulletStack : items) {
+            if (GunItem.BULLETS.test(bulletStack) && bulletStack.getItem() instanceof IBullet bullet) {
+                return bullet.createProjectile(world, bulletStack, shooter);
+            }
+        }
         return null;
     }
 
