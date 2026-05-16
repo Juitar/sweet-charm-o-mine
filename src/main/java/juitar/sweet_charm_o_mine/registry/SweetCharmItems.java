@@ -11,6 +11,7 @@ import juitar.sweet_charm_o_mine.items.wearable.PickItem;
 import juitar.sweet_charm_o_mine.items.wearable.SniperScopeItem;
 import juitar.sweet_charm_o_mine.items.wearable.PipeItem;
 import juitar.sweet_charm_o_mine.items.wearable.MagazineItem;
+import juitar.sweet_charm_o_mine.items.wearable.AmmoChainItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -45,6 +46,7 @@ public class SweetCharmItems {
     public static final RegistryObject<CurioItem> MAGAZINE = initItem(() -> new MagazineItem(defP().stacksTo(1)), "magazine");
     public static final RegistryObject<CurioItem> TABACCO_PIPE = initItem(() -> new PipeItem(defP().stacksTo(1)), "tobacco_pipe");
     public static final RegistryObject<CurioItem> BULLET_SHELL_CHARM = initItem(() -> new BulletShellCharmItem(defP().stacksTo(1), 0.10), "bullet_shell_charm");
+    public static final RegistryObject<CurioItem> AMMO_BELT = initItem(() -> new AmmoChainItem(defP().stacksTo(1)), "ammo_belt");
     
     public static Item.Properties defP() {
         return new Item.Properties();

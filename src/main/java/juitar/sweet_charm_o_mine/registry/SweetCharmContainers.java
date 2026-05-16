@@ -1,6 +1,7 @@
 package juitar.sweet_charm_o_mine.registry;
 
 import juitar.sweet_charm_o_mine.SweetCharm;
+import juitar.sweet_charm_o_mine.items.AmmoChainContainer;
 import juitar.sweet_charm_o_mine.items.PocketContainer;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -19,6 +20,10 @@ public class SweetCharmContainers {
             () -> IForgeMenuType.create((windowId, inv, data) -> {
                 return new PocketContainer(windowId, inv, data.readItem());
             }));
+
+    public static final RegistryObject<MenuType<AmmoChainContainer>> AMMO_BELT_CONTAINER =
+        CONTAINERS.register("ammo_belt_container",
+            () -> IForgeMenuType.create(AmmoChainContainer::new));
 
     public static void register(IEventBus eventBus) {
         CONTAINERS.register(eventBus);

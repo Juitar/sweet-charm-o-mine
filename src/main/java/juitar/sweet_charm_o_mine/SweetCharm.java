@@ -3,6 +3,7 @@ package juitar.sweet_charm_o_mine;
 import juitar.sweet_charm_o_mine.registry.SweetCharmAttributes;
 import juitar.sweet_charm_o_mine.registry.SweetCharmItems;
 import juitar.sweet_charm_o_mine.registry.SweetCharmContainers;
+import juitar.sweet_charm_o_mine.network.SweetCharmNetwork;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -24,11 +25,19 @@ public class SweetCharm {
         SweetCharmItems.REG.register(EVENT_BUS);
         SweetCharmContainers.register(EVENT_BUS);
         SweetCharmAttributes.REG.register(EVENT_BUS);
+        SweetCharmNetwork.register();
         EVENT_BUS.addListener(SweetCharmItems::makeCreativeTab);
         EVENT_BUS.addListener(SweetCharmAttributes::playerAttributes);
         
         // 添加游戏关闭时的配置保存钩子
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            try {
+                Class<?> clientSetupClass = Class.forName("juitar.sweet_charm_o_mine.client.ClientSetup");
+                clientSetupClass.getMethod("registerConfigScreen").invoke(null);
+            } catch (Exception e) {
+                LOG.debug("无法注册客户端配置界面: {}", e.getMessage());
+            }
+
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 try {
                     Class<?> clientEventsClass = Class.forName("juitar.sweet_charm_o_mine.client.ClientEvents");

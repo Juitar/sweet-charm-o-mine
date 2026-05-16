@@ -17,6 +17,7 @@
     "item.sweet_charm_o_mine.magazine": "弹匣",
     "item.sweet_charm_o_mine.shotgun_shells": "霰弹枪弹壳",
     "item.sweet_charm_o_mine.tobacco_pipe": "烟管",
+    "item.sweet_charm_o_mine.ammo_belt": "弹药带",
     
 
     "tooltip.sweet_charm_o_mine.sniper_scope.desc":"潜行时允许狙击枪使用狙击镜瞄准",
@@ -29,6 +30,7 @@
     "tooltip.sweet_charm_o_mine.magazine.desc":"连续射击10发获得射速提升，20发获得弹药节约",
     "tooltip.sweet_charm_o_mine.shotgun_shells.desc":"站立不动3秒获得10秒枪械精准度提升",
     "tooltip.sweet_charm_o_mine.tobacco_pipe.desc":"站立不动2秒获得隐身及枪械精准度提升",
+    "tooltip.sweet_charm_o_mine.ammo_belt.desc":"为每把枪配置循环发射的弹药带",
 
 
     "tooltip.sweet_charm_o_mine.pocket.capacity": "容量: %d/%d",
@@ -42,9 +44,36 @@
     "message.sweet_charm_o_mine.pocket.organized": "口袋已整理",
 
     "container.sweet_charm_o_mine.pocket": "子弹口袋",
+    "container.sweet_charm_o_mine.ammo_belt": "弹药带",
+    "button.sweet_charm_o_mine.save": "保存",
+    "label.sweet_charm_o_mine.ammo_belt.gun": "枪械",
+    "label.sweet_charm_o_mine.ammo_belt.belt": "弹带",
+    "label.sweet_charm_o_mine.ammo_belt.configs": "配置",
+    "label.sweet_charm_o_mine.ammo_belt.empty": "无枪械",
+    "label.sweet_charm_o_mine.ammo_belt.pocket": "口袋弹药",
+    "button.sweet_charm_o_mine.ammo_belt.delete": "删除",
+    "button.sweet_charm_o_mine.ammo_belt.previous": "上一页",
+    "button.sweet_charm_o_mine.ammo_belt.next": "下一页",
     
     "key.sweet_charm_o_mine.toggle_sniper_zoom": "切换狙击镜缩放",
+    "key.sweet_charm_o_mine.open_bullet_pocket": "打开子弹口袋",
+    "key.sweet_charm_o_mine.previous_pocket_ammo": "上一种口袋弹药",
+    "key.sweet_charm_o_mine.next_pocket_ammo": "下一种口袋弹药",
     "key.categories.sweet_charm_o_mine": "Sweet Charm O' Mine",
+
+    "options.sweet_charm_o_mine.title": "Sweet Charm O' Mine 配置",
+    "options.sweet_charm_o_mine.client": "客户端",
+    "options.sweet_charm_o_mine.sniper_zoom_mode": "狙击镜缩放模式",
+    "options.sweet_charm_o_mine.sniper_zoom_mode.off": "关闭",
+    "options.sweet_charm_o_mine.sniper_zoom_mode.zoom_4x": "4 倍缩放",
+    "options.sweet_charm_o_mine.sniper_zoom_mode.zoom_8x": "8 倍缩放",
+    "options.sweet_charm_o_mine.ammo_overlay_position": "口袋弹药提示位置",
+    "options.sweet_charm_o_mine.ammo_overlay_position.right_lower": "右下",
+    "options.sweet_charm_o_mine.ammo_overlay_position.right_center": "右侧居中",
+    "options.sweet_charm_o_mine.ammo_overlay_position.left_lower": "左下",
+    "options.sweet_charm_o_mine.ammo_overlay_position.left_center": "左侧居中",
+    "options.sweet_charm_o_mine.ammo_overlay_scale": "口袋弹药提示缩放",
+    "options.sweet_charm_o_mine.ammo_overlay_scale.tooltip": "允许范围: 0.75 - 1.5",
     
     "message.sweet_charm_o_mine.sniper_zoom_4x": "狙击镜: 4倍缩放",
     "message.sweet_charm_o_mine.sniper_zoom_8x": "狙击镜: 8倍缩放", 

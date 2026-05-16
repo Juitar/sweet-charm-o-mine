@@ -26,6 +26,10 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class PocketItem extends Item implements ICurioItem, IBullet {
+    private static final String TAG_INVENTORY = "Inventory";
+    private static final String TAG_SELECTED_AMMO = "SelectedAmmo";
+    private static final String TAG_RESOLVED_AMMO = "ResolvedAmmo";
+
     private final PocketType pocketType;
 
     public PocketItem(PocketType pocketType) {
@@ -93,11 +97,11 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
     }
 
     // 获取子弹口袋的物品列表（用于IBullet接口）
-    private java.util.List<ItemStack> getInventoryItems(ItemStack stack) {
+    private static java.util.List<ItemStack> getInventoryItems(ItemStack stack) {
         java.util.List<ItemStack> items = new java.util.ArrayList<>();
         CompoundTag tag = stack.getTag();
-        if (tag != null && tag.contains("Inventory")) {
-            ListTag inventoryList = tag.getList("Inventory", 10); // 10 = CompoundTag type
+        if (tag != null && tag.contains(TAG_INVENTORY)) {
+            ListTag inventoryList = tag.getList(TAG_INVENTORY, 10); // 10 = CompoundTag type
             
             for (int i = 0; i < inventoryList.size(); i++) {
                 CompoundTag slotTag = inventoryList.getCompound(i);
@@ -108,6 +112,166 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
             }
         }
         return items;
+    }
+
+    public static java.util.List<AmmoEntry> getDistinctAmmoEntries(ItemStack pocketStack) {
+        java.util.List<AmmoEntry> entries = new java.util.ArrayList<>();
+        for (ItemStack bulletStack : getInventoryItems(pocketStack)) {
+            if (!GunItem.BULLETS.test(bulletStack)) {
+                continue;
+            }
+
+            AmmoEntry existing = null;
+            for (AmmoEntry entry : entries) {
+                if (ItemStack.isSameItemSameTags(entry.stack(), bulletStack)) {
+                    existing = entry;
+                    break;
+                }
+            }
+
+            if (existing == null) {
+                ItemStack displayStack = bulletStack.copy();
+                displayStack.setCount(1);
+                entries.add(new AmmoEntry(displayStack, bulletStack.getCount()));
+            } else {
+                existing.addCount(bulletStack.getCount());
+            }
+        }
+        return entries;
+    }
+
+    public static ItemStack getSelectedAmmoTemplate(ItemStack pocketStack) {
+        CompoundTag tag = pocketStack.getTag();
+        if (tag == null || !tag.contains(TAG_SELECTED_AMMO)) {
+            return ItemStack.EMPTY;
+        }
+        ItemStack selected = ItemStack.of(tag.getCompound(TAG_SELECTED_AMMO));
+        selected.setCount(1);
+        return selected;
+    }
+
+    public static int getAmmoCount(ItemStack pocketStack, ItemStack ammoTemplate) {
+        int count = 0;
+        for (ItemStack bulletStack : getInventoryItems(pocketStack)) {
+            if (GunItem.BULLETS.test(bulletStack) && ItemStack.isSameItemSameTags(bulletStack, ammoTemplate)) {
+                count += bulletStack.getCount();
+            }
+        }
+        return count;
+    }
+
+    public static ItemStack cycleSelectedAmmo(ItemStack pocketStack, int direction) {
+        java.util.List<AmmoEntry> entries = getDistinctAmmoEntries(pocketStack);
+        if (entries.isEmpty()) {
+            clearStoredAmmo(pocketStack, TAG_SELECTED_AMMO);
+            clearStoredAmmo(pocketStack, TAG_RESOLVED_AMMO);
+            return ItemStack.EMPTY;
+        }
+
+        ItemStack selected = getSelectedAmmoTemplate(pocketStack);
+        int currentIndex = -1;
+        for (int i = 0; i < entries.size(); i++) {
+            if (!selected.isEmpty() && ItemStack.isSameItemSameTags(entries.get(i).stack(), selected)) {
+                currentIndex = i;
+                break;
+            }
+        }
+
+        int nextIndex = currentIndex < 0
+                ? 0
+                : Math.floorMod(currentIndex + (direction < 0 ? -1 : 1), entries.size());
+        ItemStack next = entries.get(nextIndex).stack().copy();
+        setStoredAmmo(pocketStack, TAG_SELECTED_AMMO, next);
+        clearStoredAmmo(pocketStack, TAG_RESOLVED_AMMO);
+        return next;
+    }
+
+    public static ItemStack resolveSelectedAmmo(ItemStack pocketStack, boolean storeResolved) {
+        ItemStack selected = getSelectedAmmoTemplate(pocketStack);
+        ItemStack resolved = ItemStack.EMPTY;
+
+        if (!selected.isEmpty()) {
+            resolved = findMatchingAmmo(pocketStack, selected);
+        }
+
+        if (resolved.isEmpty()) {
+            for (AmmoEntry entry : getDistinctAmmoEntries(pocketStack)) {
+                resolved = findMatchingAmmo(pocketStack, entry.stack());
+                if (!resolved.isEmpty()) {
+                    setStoredAmmo(pocketStack, TAG_SELECTED_AMMO, resolved);
+                    break;
+                }
+            }
+        }
+
+        if (storeResolved) {
+            if (resolved.isEmpty()) {
+                clearStoredAmmo(pocketStack, TAG_RESOLVED_AMMO);
+            } else {
+                setStoredAmmo(pocketStack, TAG_RESOLVED_AMMO, resolved);
+            }
+        }
+
+        return resolved;
+    }
+
+    public static boolean prepareSpecificAmmo(ItemStack pocketStack, ItemStack ammoTemplate, boolean storeResolved) {
+        ItemStack resolved = findMatchingAmmo(pocketStack, ammoTemplate);
+        if (resolved.isEmpty()) {
+            return false;
+        }
+        if (storeResolved) {
+            setStoredAmmo(pocketStack, TAG_SELECTED_AMMO, resolved);
+            setStoredAmmo(pocketStack, TAG_RESOLVED_AMMO, resolved);
+        }
+        return true;
+    }
+
+    public static boolean prepareResolvedAmmo(ItemStack pocketStack, ItemStack ammoTemplate) {
+        ItemStack resolved = findMatchingAmmo(pocketStack, ammoTemplate);
+        if (resolved.isEmpty()) {
+            clearStoredAmmo(pocketStack, TAG_RESOLVED_AMMO);
+            return false;
+        }
+        setStoredAmmo(pocketStack, TAG_RESOLVED_AMMO, resolved);
+        return true;
+    }
+
+    private static ItemStack getResolvedAmmoTemplate(ItemStack pocketStack) {
+        CompoundTag tag = pocketStack.getTag();
+        if (tag == null || !tag.contains(TAG_RESOLVED_AMMO)) {
+            return ItemStack.EMPTY;
+        }
+        ItemStack resolved = ItemStack.of(tag.getCompound(TAG_RESOLVED_AMMO));
+        resolved.setCount(1);
+        return resolved;
+    }
+
+    private static ItemStack findMatchingAmmo(ItemStack pocketStack, ItemStack ammoTemplate) {
+        if (ammoTemplate.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+        for (ItemStack bulletStack : getInventoryItems(pocketStack)) {
+            if (GunItem.BULLETS.test(bulletStack) && ItemStack.isSameItemSameTags(bulletStack, ammoTemplate)) {
+                ItemStack result = bulletStack.copy();
+                result.setCount(1);
+                return result;
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private static void setStoredAmmo(ItemStack pocketStack, String key, ItemStack ammoStack) {
+        ItemStack stored = ammoStack.copy();
+        stored.setCount(1);
+        pocketStack.getOrCreateTag().put(key, stored.save(new CompoundTag()));
+    }
+
+    private static void clearStoredAmmo(ItemStack pocketStack, String key) {
+        CompoundTag tag = pocketStack.getTag();
+        if (tag != null) {
+            tag.remove(key);
+        }
     }
 
     @Override
@@ -140,36 +304,25 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
     // IBullet接口实现 - 自动供弹功能
     @Override
     public boolean hasAmmo(ItemStack stack) {
-        java.util.List<ItemStack> items = getInventoryItems(stack);
-        for (ItemStack bulletStack : items) {
-            if (GunItem.BULLETS.test(bulletStack)) {
-                return true;
-            }
-        }
-        return false;
+        return !resolveSelectedAmmo(stack, false).isEmpty();
     }
 
     /**
      * 查找匹配的弹药（用于Player.getProjectile()）
      */
     public ItemStack findAmmo(ItemStack pocketStack, java.util.function.Predicate<ItemStack> supportedProjectiles) {
-        java.util.List<ItemStack> items = getInventoryItems(pocketStack);
-        for (ItemStack bulletStack : items) {
-            if (supportedProjectiles.test(bulletStack)) {
-                return bulletStack;
-            }
+        ItemStack selected = resolveSelectedAmmo(pocketStack, false);
+        if (!selected.isEmpty() && supportedProjectiles.test(selected)) {
+            return selected;
         }
         return ItemStack.EMPTY;
     }
 
     @Override
     public BulletEntity createProjectile(Level world, ItemStack stack, LivingEntity shooter) {
-        // 委托给口袋内的真实子弹，保留其弹药转化逻辑（如铁弹丸→火焰弹丸）
-        java.util.List<ItemStack> items = getInventoryItems(stack);
-        for (ItemStack bulletStack : items) {
-            if (GunItem.BULLETS.test(bulletStack) && bulletStack.getItem() instanceof IBullet bullet) {
-                return bullet.createProjectile(world, bulletStack, shooter);
-            }
+        ItemStack selected = resolveSelectedAmmo(stack, false);
+        if (!selected.isEmpty() && selected.getItem() instanceof IBullet bullet) {
+            return bullet.createProjectile(world, selected, shooter);
         }
         return null;
     }
@@ -181,44 +334,68 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
 
     @Override
     public ItemStack getDelegate(ItemStack stack, Player player) {
-        java.util.List<ItemStack> items = getInventoryItems(stack);
-        for (ItemStack bulletStack : items) {
-            if (GunItem.BULLETS.test(bulletStack)) {
-                return bulletStack;
+        ItemStack resolved = getResolvedAmmoTemplate(stack);
+        if (!resolved.isEmpty()) {
+            ItemStack matching = findMatchingAmmo(stack, resolved);
+            if (!matching.isEmpty()) {
+                return matching;
             }
         }
-        return ItemStack.EMPTY;
+        return resolveSelectedAmmo(stack, false);
     }
 
     @Override
     public void consume(ItemStack stack, Player player) {
-        // 获取子弹口袋的NBT数据
         CompoundTag tag = stack.getOrCreateTag();
-        if (tag.contains("Inventory")) {
-            ListTag inventoryList = tag.getList("Inventory", 10); // 10 = CompoundTag type
-            
-            // 查找第一个可用的子弹
+        ItemStack targetAmmo = getResolvedAmmoTemplate(stack);
+        if (targetAmmo.isEmpty()) {
+            targetAmmo = resolveSelectedAmmo(stack, false);
+        }
+
+        if (!targetAmmo.isEmpty() && tag.contains(TAG_INVENTORY)) {
+            ListTag inventoryList = tag.getList(TAG_INVENTORY, 10); // 10 = CompoundTag type
+
             for (int i = 0; i < inventoryList.size(); i++) {
                 CompoundTag slotTag = inventoryList.getCompound(i);
                 ItemStack bulletStack = ItemStack.of(slotTag);
-                
-                if (!bulletStack.isEmpty() && GunItem.BULLETS.test(bulletStack)) {
-                    // 减少子弹数量
+
+                if (!bulletStack.isEmpty()
+                        && GunItem.BULLETS.test(bulletStack)
+                        && ItemStack.isSameItemSameTags(bulletStack, targetAmmo)) {
                     bulletStack.shrink(1);
-                    
-                    // 如果子弹被完全消耗，从列表中移除
+
                     if (bulletStack.isEmpty()) {
                         inventoryList.remove(i);
                     } else {
-                        // 更新子弹数据
                         inventoryList.set(i, bulletStack.save(new CompoundTag()));
                     }
-                    
-                    // 保存更新后的列表
-                    tag.put("Inventory", inventoryList);
+                    tag.put(TAG_INVENTORY, inventoryList);
                     break;
                 }
             }
+        }
+        clearStoredAmmo(stack, TAG_RESOLVED_AMMO);
+    }
+
+    public static class AmmoEntry {
+        private final ItemStack stack;
+        private int count;
+
+        public AmmoEntry(ItemStack stack, int count) {
+            this.stack = stack;
+            this.count = count;
+        }
+
+        public ItemStack stack() {
+            return stack;
+        }
+
+        public int count() {
+            return count;
+        }
+
+        public void addCount(int amount) {
+            this.count += amount;
         }
     }
 }

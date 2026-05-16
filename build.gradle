@@ -2,7 +2,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'net.minecraftforge.gradle' version '6.0.53'
     id 'org.spongepowered.mixin' version '0.7.38'
 }
 
@@ -142,6 +142,9 @@ dependencies {
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     //gwr
     implementation fg.deobf("curse.maven:guns-without-roses-405077:6843150")
+
+    //gwre
+    implementation fg.deobf("curse.maven:gunswithoutroses-expansions-1219417:7299735")
     // dummy
     implementation fg.deobf("curse.maven:selene-499980:6249659")
     implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:6237015")
@@ -156,7 +159,7 @@ dependencies {
     //rubidium
     implementation fg.deobf("curse.maven:rubidium-574856:4952685")
     //terra curio
-    implementation fg.deobf("curse.maven:terra-curio-1027625:6566491")
+    // implementation fg.deobf("curse.maven:terra-curio-1027625:6566491")
     //Cloth Config
     implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
     //Architectury API

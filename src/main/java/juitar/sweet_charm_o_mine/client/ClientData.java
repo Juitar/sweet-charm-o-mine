@@ -46,7 +46,7 @@ public class ClientData {
     /**
      * 当前缩放模式
      */
-    private static ZoomMode currentZoomMode = ZoomMode.OFF;
+    private static ZoomMode currentZoomMode = ZoomMode.ZOOM_4X;
     
     /**
      * 当前是否正在缩放（潜行时）
