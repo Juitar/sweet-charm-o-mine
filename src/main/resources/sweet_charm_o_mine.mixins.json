@@ -6,7 +6,8 @@
   "refmap": "sweet_charm_o_mine.mixins.refmap.json",
   "mixins": [
     "GunItemMixin",
-    "GatlingItemMixin"
+    "GatlingItemMixin",
+    "BurstGunItemMixin"
   ],
   "client": [
     "SniperZoomMixin",
