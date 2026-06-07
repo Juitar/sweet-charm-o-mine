@@ -1,15 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "IBI",
-    "RCR",
-    "IBI"
+    "LIL",
+    "LLL",
+    "BBB"
   ],
   "key": {
-    "I": { "item": "minecraft:iron_ingot" },
-    "B": { "item": "gunswithoutroses:iron_bullet" },
-    "R": { "item": "minecraft:redstone" },
-    "C": { "item": "minecraft:chain" }
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "gunswithoutroses:iron_bullet"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    }
   },
   "result": {
     "item": "sweet_charm_o_mine:ammo_belt"
