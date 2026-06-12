@@ -58,7 +58,7 @@ public class SniperZoomManager {
             if (ClientData.isSniperZoomEnabled()) {
                 ClientData.setSniperZoomEnabled(false);
                 player.playSound(SoundEvents.SPYGLASS_STOP_USING, 1.0F, 1.0F);
-                SweetCharm.LOG.info("狙击镜缩放已关闭 - 不满足使用条件");
+                SweetCharm.LOG.debug("狙击镜缩放已关闭 - 不满足使用条件");
             }
             return false;
         }
@@ -73,7 +73,7 @@ public class SniperZoomManager {
             player.playSound(SoundEvents.SPYGLASS_STOP_USING, 1.0F, 1.0F);
         }
         
-        SweetCharm.LOG.info("手动切换狙击镜缩放: {}", newState);
+        SweetCharm.LOG.debug("手动切换狙击镜缩放: {}", newState);
         return true;
     }
     

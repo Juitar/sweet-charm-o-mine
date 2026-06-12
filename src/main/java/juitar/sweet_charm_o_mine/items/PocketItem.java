@@ -70,11 +70,13 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
             try {
                 // 使用NetworkHooks打开GUI界面，传递ItemStack数据
                 NetworkHooks.openScreen((ServerPlayer) player, new SimpleMenuProvider(
-                    (windowId, playerInventory, p) -> new PocketContainer(windowId, playerInventory, stack),
-                    Component.translatable("container.sweet_charm_o_mine.pocket")
-                ), buf -> buf.writeItem(stack)); // 关键：传递ItemStack数据到客户端
-                
-                juitar.sweet_charm_o_mine.SweetCharm.LOG.info("成功打开GUI界面");
+                    (windowId, playerInventory, p) -> new PocketContainer(windowId, playerInventory, stack,
+                            BulletManager.getManageablePocketCount(player, stack) > 1),
+                    stack.getHoverName()
+                ), buf -> {
+                    buf.writeItem(createMenuDataStack(stack));
+                    buf.writeBoolean(BulletManager.getManageablePocketCount(player, stack) > 1);
+                });
             } catch (Exception e) {
                 juitar.sweet_charm_o_mine.SweetCharm.LOG.error("打开GUI时发生错误: ", e);
                 return InteractionResultHolder.fail(stack);
@@ -94,6 +96,12 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
 
     public int getSlotCount() {
         return pocketType.getRows() * pocketType.getColumns();
+    }
+
+    public static ItemStack createMenuDataStack(ItemStack stack) {
+        ItemStack menuStack = new ItemStack(stack.getItem());
+        menuStack.setCount(1);
+        return menuStack;
     }
 
     // 获取子弹口袋的物品列表（用于IBullet接口）
@@ -148,6 +156,17 @@ public class PocketItem extends Item implements ICurioItem, IBullet {
         ItemStack selected = ItemStack.of(tag.getCompound(TAG_SELECTED_AMMO));
         selected.setCount(1);
         return selected;
+    }
+
+    public static void setSelectedAmmoTemplate(ItemStack pocketStack, ItemStack ammoStack) {
+        if (ammoStack.isEmpty()) {
+            clearStoredAmmo(pocketStack, TAG_SELECTED_AMMO);
+            clearStoredAmmo(pocketStack, TAG_RESOLVED_AMMO);
+            return;
+        }
+
+        setStoredAmmo(pocketStack, TAG_SELECTED_AMMO, ammoStack);
+        clearStoredAmmo(pocketStack, TAG_RESOLVED_AMMO);
     }
 
     public static int getAmmoCount(ItemStack pocketStack, ItemStack ammoTemplate) {

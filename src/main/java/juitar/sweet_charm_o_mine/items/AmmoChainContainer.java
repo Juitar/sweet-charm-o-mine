@@ -511,12 +511,10 @@ public class AmmoChainContainer extends AbstractContainerMenu {
             configInventory.setItem(POCKET_AMMO_SLOT_START + i, ItemStack.EMPTY);
         }
 
-        BulletManager.getEquippedPocket(player).ifPresent(pocketStack -> {
-            List<PocketItem.AmmoEntry> entries = PocketItem.getDistinctAmmoEntries(pocketStack);
-            for (PocketItem.AmmoEntry entry : entries) {
-                pocketAmmoStacks.add(entry.stack().copy());
-            }
-        });
+        List<PocketItem.AmmoEntry> entries = BulletManager.getDistinctAmmoEntries(player);
+        for (PocketItem.AmmoEntry entry : entries) {
+            pocketAmmoStacks.add(entry.stack().copy());
+        }
 
         int maxPage = pocketAmmoStacks.isEmpty() ? 0 : (pocketAmmoStacks.size() - 1) / POCKET_AMMO_SLOTS;
         pocketAmmoPage = Math.max(0, Math.min(pocketAmmoPage, maxPage));

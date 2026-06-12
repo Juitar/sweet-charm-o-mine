@@ -2,6 +2,7 @@ package juitar.sweet_charm_o_mine.network;
 
 import juitar.sweet_charm_o_mine.items.BulletManager;
 import juitar.sweet_charm_o_mine.items.PocketContainer;
+import juitar.sweet_charm_o_mine.items.PocketItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,15 +27,19 @@ public class OpenPocketPacket {
             ServerPlayer player = context.getSender();
             if (player == null) return;
 
-            BulletManager.getEquippedPocket(player).ifPresent(pocketStack -> openPocket(player, pocketStack));
+            BulletManager.getActivePocket(player).ifPresent(pocketStack -> openPocket(player, pocketStack));
         });
         context.setPacketHandled(true);
     }
 
-    private static void openPocket(ServerPlayer player, ItemStack pocketStack) {
+    public static void openPocket(ServerPlayer player, ItemStack pocketStack) {
+        boolean hasSwitcher = BulletManager.getManageablePocketCount(player, pocketStack) > 1;
         NetworkHooks.openScreen(player, new SimpleMenuProvider(
-                (windowId, playerInventory, p) -> new PocketContainer(windowId, playerInventory, pocketStack),
-                Component.translatable("container.sweet_charm_o_mine.pocket")
-        ), buf -> buf.writeItem(pocketStack));
+                (windowId, playerInventory, p) -> new PocketContainer(windowId, playerInventory, pocketStack, hasSwitcher),
+                pocketStack.getHoverName()
+        ), buf -> {
+            buf.writeItem(PocketItem.createMenuDataStack(pocketStack));
+            buf.writeBoolean(hasSwitcher);
+        });
     }
 }

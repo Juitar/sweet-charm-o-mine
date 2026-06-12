@@ -47,6 +47,27 @@ public class AmmoChainItem extends CurioItem {
     }
 
     @Override
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        if (slotContext.entity() == null) {
+            return true;
+        }
+
+        boolean replacingAmmoBelt = CuriosApi.getCuriosInventory(slotContext.entity())
+                .map(handler -> handler.getCurios().get(slotContext.identifier()))
+                .filter(stacksHandler -> slotContext.index() >= 0 && slotContext.index() < stacksHandler.getSlots())
+                .map(stacksHandler -> stacksHandler.getStacks().getStackInSlot(slotContext.index()))
+                .filter(equipped -> equipped.getItem() instanceof AmmoChainItem)
+                .isPresent();
+        if (replacingAmmoBelt) {
+            return true;
+        }
+
+        return CuriosApi.getCuriosHelper()
+                .findFirstCurio(slotContext.entity(), equipped -> equipped.getItem() instanceof AmmoChainItem)
+                .isEmpty();
+    }
+
+    @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level.isClientSide && player instanceof ServerPlayer serverPlayer) {
@@ -212,9 +233,7 @@ public class AmmoChainItem extends CurioItem {
     }
 
     private static ItemStack findAvailableAmmo(ItemStack ammoTemplate, Player player, boolean preparePocket) {
-        Optional<ItemStack> pocketOpt = BulletManager.getEquippedPocket(player);
-        if (pocketOpt.isPresent()) {
-            ItemStack pocketStack = pocketOpt.get();
+        for (ItemStack pocketStack : BulletManager.getEquippedPockets(player)) {
             boolean hasPocketAmmo = preparePocket
                     ? PocketItem.prepareResolvedAmmo(pocketStack, ammoTemplate)
                     : PocketItem.prepareSpecificAmmo(pocketStack, ammoTemplate, false);

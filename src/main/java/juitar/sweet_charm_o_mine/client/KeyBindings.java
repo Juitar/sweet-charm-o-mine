@@ -1,14 +1,12 @@
 package juitar.sweet_charm_o_mine.client;
 
 import juitar.sweet_charm_o_mine.items.BulletManager;
-import juitar.sweet_charm_o_mine.items.PocketItem;
 import juitar.sweet_charm_o_mine.network.CyclePocketAmmoPacket;
 import juitar.sweet_charm_o_mine.network.OpenPocketPacket;
 import juitar.sweet_charm_o_mine.network.SweetCharmNetwork;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -87,12 +85,9 @@ public class KeyBindings {
     private static void cyclePocketAmmo(Minecraft mc, int direction) {
         if (mc.player == null) return;
 
-        BulletManager.getEquippedPocket(mc.player).ifPresent(pocketStack -> {
-            ItemStack selected = PocketItem.cycleSelectedAmmo(pocketStack, direction);
-            if (!selected.isEmpty()) {
-                PocketAmmoOverlay.show(direction);
-            }
-        });
+        if (!BulletManager.cycleSelectedAmmo(mc.player, direction).isEmpty()) {
+            PocketAmmoOverlay.show(direction);
+        }
         SweetCharmNetwork.CHANNEL.sendToServer(new CyclePocketAmmoPacket(direction));
     }
 }

@@ -15,10 +15,16 @@ import net.minecraft.world.item.ItemStack;
 public class PocketContainer extends AbstractContainerMenu {
     private final PocketInventory pocketInventory;
     private final ItemStack pocketStack;
+    private final boolean hasSwitcher;
 
     public PocketContainer(int windowId, Inventory playerInventory, ItemStack pocketStack) {
+        this(windowId, playerInventory, pocketStack, false);
+    }
+
+    public PocketContainer(int windowId, Inventory playerInventory, ItemStack pocketStack, boolean hasSwitcher) {
         super(SweetCharmContainers.POCKET_CONTAINER.get(), windowId);
         this.pocketStack = pocketStack;
+        this.hasSwitcher = hasSwitcher;
         
         PocketType type = ((PocketItem) pocketStack.getItem()).getPocketType();
         int expectedSize = type.getRows() * type.getColumns();
@@ -120,6 +126,10 @@ public class PocketContainer extends AbstractContainerMenu {
 
     public ItemStack getPocketStack() {
         return pocketStack;
+    }
+
+    public boolean hasSwitcher() {
+        return hasSwitcher;
     }
 
     // 内部类：基于GunsWithoutRoses的BulletBagContainer实现

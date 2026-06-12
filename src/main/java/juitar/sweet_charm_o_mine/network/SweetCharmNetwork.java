@@ -28,6 +28,12 @@ public class SweetCharmNetwork {
                 .decoder(CyclePocketAmmoPacket::decode)
                 .consumerMainThread(CyclePocketAmmoPacket::handle)
                 .add();
+
+        CHANNEL.messageBuilder(SwitchPocketPacket.class, nextId())
+                .encoder(SwitchPocketPacket::encode)
+                .decoder(SwitchPocketPacket::decode)
+                .consumerMainThread(SwitchPocketPacket::handle)
+                .add();
     }
 
     private static int nextId() {

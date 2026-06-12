@@ -28,10 +28,7 @@ public class AmmoResolver {
             return chainAmmo;
         }
 
-        ItemStack pocketAmmo = BulletManager.getEquippedPocket(player)
-                .filter(stack -> stack.getItem() instanceof PocketItem)
-                .filter(stack -> !PocketItem.resolveSelectedAmmo(stack, false).isEmpty())
-                .orElse(ItemStack.EMPTY);
+        ItemStack pocketAmmo = resolvePocketAmmo(player, false);
         if (!pocketAmmo.isEmpty()) {
             return pocketAmmo;
         }
@@ -40,9 +37,30 @@ public class AmmoResolver {
     }
 
     private static ItemStack resolvePocketAmmo(Player player) {
-        return BulletManager.getEquippedPocket(player)
-                .filter(stack -> stack.getItem() instanceof PocketItem)
-                .filter(stack -> !PocketItem.resolveSelectedAmmo(stack, true).isEmpty())
-                .orElse(ItemStack.EMPTY);
+        return resolvePocketAmmo(player, true);
+    }
+
+    private static ItemStack resolvePocketAmmo(Player player, boolean storeResolved) {
+        ItemStack selected = storeResolved
+                ? BulletManager.normalizeSelectedAmmo(player)
+                : BulletManager.getSelectedAmmoTemplate(player);
+        if (!selected.isEmpty()) {
+            for (ItemStack pocketStack : BulletManager.getEquippedPockets(player)) {
+                boolean hasSelectedAmmo = storeResolved
+                        ? PocketItem.prepareResolvedAmmo(pocketStack, selected)
+                        : PocketItem.prepareSpecificAmmo(pocketStack, selected, false);
+                if (hasSelectedAmmo) {
+                    return pocketStack;
+                }
+            }
+        }
+
+        for (ItemStack pocketStack : BulletManager.getEquippedPockets(player)) {
+            if (pocketStack.getItem() instanceof PocketItem
+                    && !PocketItem.resolveSelectedAmmo(pocketStack, storeResolved).isEmpty()) {
+                return pocketStack;
+            }
+        }
+        return ItemStack.EMPTY;
     }
 }

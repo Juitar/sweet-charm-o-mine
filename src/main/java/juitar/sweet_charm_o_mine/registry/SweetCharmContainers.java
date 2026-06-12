@@ -18,7 +18,7 @@ public class SweetCharmContainers {
     public static final RegistryObject<MenuType<PocketContainer>> POCKET_CONTAINER = 
         CONTAINERS.register("pocket_container", 
             () -> IForgeMenuType.create((windowId, inv, data) -> {
-                return new PocketContainer(windowId, inv, data.readItem());
+                return new PocketContainer(windowId, inv, data.readItem(), data.readBoolean());
             }));
 
     public static final RegistryObject<MenuType<AmmoChainContainer>> AMMO_BELT_CONTAINER =

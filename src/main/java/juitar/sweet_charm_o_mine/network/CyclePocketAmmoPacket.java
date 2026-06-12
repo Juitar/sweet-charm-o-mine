@@ -1,7 +1,6 @@
 package juitar.sweet_charm_o_mine.network;
 
 import juitar.sweet_charm_o_mine.items.BulletManager;
-import juitar.sweet_charm_o_mine.items.PocketItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
@@ -30,12 +29,10 @@ public class CyclePocketAmmoPacket {
             ServerPlayer player = context.getSender();
             if (player == null) return;
 
-            BulletManager.getEquippedPocket(player).ifPresent(pocketStack -> {
-                ItemStack selected = PocketItem.cycleSelectedAmmo(pocketStack, packet.direction);
-                if (!selected.isEmpty()) {
-                    player.containerMenu.broadcastChanges();
-                }
-            });
+            ItemStack selected = BulletManager.cycleSelectedAmmo(player, packet.direction);
+            if (!selected.isEmpty()) {
+                player.containerMenu.broadcastChanges();
+            }
         });
         context.setPacketHandled(true);
     }

@@ -53,17 +53,16 @@ public class PocketAmmoOverlay {
             return;
         }
 
-        BulletManager.getEquippedPocket(mc.player)
-                .ifPresent(pocketStack -> render(event.getGuiGraphics(), mc, pocketStack));
+        render(event.getGuiGraphics(), mc);
     }
 
-    private static void render(GuiGraphics guiGraphics, Minecraft mc, ItemStack pocketStack) {
-        List<PocketItem.AmmoEntry> entries = PocketItem.getDistinctAmmoEntries(pocketStack);
+    private static void render(GuiGraphics guiGraphics, Minecraft mc) {
+        List<PocketItem.AmmoEntry> entries = BulletManager.getDistinctAmmoEntries(mc.player);
         if (entries.isEmpty()) {
             return;
         }
 
-        ItemStack selected = PocketItem.getSelectedAmmoTemplate(pocketStack);
+        ItemStack selected = BulletManager.getSelectedAmmoTemplate(mc.player);
         int selectedIndex = 0;
         for (int i = 0; i < entries.size(); i++) {
             if (!selected.isEmpty() && ItemStack.isSameItemSameTags(entries.get(i).stack(), selected)) {
